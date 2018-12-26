@@ -63,10 +63,12 @@ depends=(
 # Additional packages
   'aria2'
   'bash-completion'
+  'borg'
   'ntfs-3g'
   'openssh'
   'pacman-contrib'
   'powerline-fonts'
+  'rsync'
   'sudo'
   'the_silver_searcher'
   'tree'
