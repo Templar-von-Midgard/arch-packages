@@ -1,0 +1,13 @@
+post_install() {
+  systemctl enable --now systemd-timesyncd.service
+  ln -sf /usr/share/zoneinfo/Europe/Budapest /etc/localtime
+  post_upgrade
+}
+
+post_upgrade() {
+  sed -e 's/#en_GB/en_GB/' \
+      -e 's/#hu_HU/hu_HU/' \
+      -i /etc/locale.gen
+  locale-gen
+  cp /etc/tvm-nanorc /etc/nanorc
+}

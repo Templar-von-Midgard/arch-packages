@@ -1,0 +1,91 @@
+pkgname=tvm-base
+pkgver=1
+pkgrel=1
+pkgdesc="Base system configuration"
+arch=('any')
+# url="https://github.com/..."
+license=('MIT')
+groups=('tvm')
+install=tvm-base.install
+depends=(
+# Arch Linux base
+  'bash'
+  'bzip2'
+  'coreutils'
+  'cryptsetup'
+  'device-mapper'
+  'dhcpcd'
+  'diffutils'
+  'e2fsprogs'
+  'file'
+  'filesystem'
+  'findutils'
+  'gawk'
+  'gcc-libs'
+  'gettext'
+  'glibc'
+  'grep'
+  'gzip'
+  'inetutils'
+  'iproute2'
+  'iputils'
+  'jfsutils'
+  'less'
+  'licenses'
+  'linux'
+  'linux-firmware'
+  'logrotate'
+  'lvm2'
+  'man-db'
+  'man-pages'
+  'mdadm'
+  'nano'
+  # 'netctl'
+  'pacman'
+  'pciutils'
+  'perl'
+  'procps-ng'
+  'psmisc'
+  'reiserfsprogs'
+  's-nail'
+  'sed'
+  'shadow'
+  'sysfsutils'
+  'systemd-sysvcompat'
+  'tar'
+  'texinfo'
+  'usbutils'
+  'util-linux'
+  'vi'
+  'which'
+  'xfsprogs'
+
+# Additional packages
+  'aria2'
+  'bash-completion'
+  'ntfs-3g'
+  'openssh'
+  'pacman-contrib'
+  'powerline-fonts'
+  'sudo'
+  'the_silver_searcher'
+  'tree'
+  'wget'
+  'zsh'
+)
+source=(
+  'locale.conf'
+  'nanorc'
+  'vconsole.conf'
+)
+sha256sums=(
+  '1f06e017af783e11eb6ddafd9baa9e00effce8e6349e69c546de01580a2f7973'
+  '888223dcd5f14db7a3016978c11e714f28fe84dcdb67e99290ed422530af70c1'
+  '86497fe4e1ba6fadee6c195a7804d401f8638aef3af3edd1ae4833b2151d569c'
+)
+
+package() {
+  install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
+  install -Dm 0644 nanorc "$pkgdir/etc/tvm-nanorc"
+  install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
+}
