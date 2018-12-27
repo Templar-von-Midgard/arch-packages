@@ -1,0 +1,6 @@
+[Unit]
+Description = Automated backup of important files
+
+[Service]
+Type = oneshot
+ExecStart = bash /usr/lib/tvm-backup/run-backup

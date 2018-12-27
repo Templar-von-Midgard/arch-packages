@@ -1,0 +1,33 @@
+pkgname=tvm-backup
+pkgver=1
+pkgrel=1
+pkgdesc="Automated backup solution using borg"
+arch=('any')
+#url=
+license=('MIT')
+#install=tvm-backup.install
+depends=(
+  'borg'
+)
+backup=(
+  'etc/backup.conf'
+)
+source=(
+  'backup.conf'
+  'borg.service'
+  'borg.timer'
+  'borg.sh'
+)
+sha256sums=(
+  '25c6c52cffec1e09a0333cd1e19665f2b3aebc24d1a710cb86321868b8f797dc' # backup.conf
+  '600b0cfc2b782f8ddb655d0fb2aa231f9cdcd01a3ff37659a8b710769f2e519e' # borg.service
+  '5be2df5ff43f2a87e4b559864411b840f21d93ab5d6dd9ea1034d69611d58650' # borg.timer
+  '8b6778d7c433fc1205fa1e4430b7cfb9e320bd1cd3491ed107cb9b56404ed3fc' # borg.sh
+)
+
+package() {
+  install -Dm 600 backup.conf "$pkgdir/etc/backup.conf"
+  install -Dm 644 borg.service "$pkgdir/usr/lib/systemd/system/tvm-backup.service"
+  install -Dm 644 borg.timer "$pkgdir/usr/lib/systemd/system/tvm-backup.timer"
+  install -Dm 744 borg.sh "$pkgdir/usr/lib/tvm-backup/run-backup"
+}
