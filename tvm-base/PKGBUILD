@@ -63,7 +63,7 @@ depends=(
 # Additional packages
   'aria2'
   'bash-completion'
-  'borg'
+  'htop'
   'ntfs-3g'
   'openssh'
   'pacman-contrib'
