@@ -1,0 +1,21 @@
+#!/bin/bash
+set -Eeuo pipefail
+trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
+
+if [[ ! -d .git ]]; then
+  echo 'Run from the repository root'
+  exit 1
+fi
+
+PACKAGES=$(ls | grep -P '^tvm-[_\-[:alnum:]]+$')
+
+mkdir -p _build
+rm -f _build/*.pkg.tar.xz
+
+for package in $PACKAGES; do
+  cd "$package"
+  rm -f *.pkg.tar.xz
+  makepkg -sc
+  mv $package-*.pkg.tar.xz ../_build
+  cd -
+done
