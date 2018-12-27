@@ -43,4 +43,5 @@ depends=(
   'lld'
   'lldb'
   'llvm'
+  'ninja'
 )
