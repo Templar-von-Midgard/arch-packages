@@ -1,0 +1,60 @@
+pkgname=tvm-desktop
+pkgver=1
+pkgrel=1
+pkgdesc="Desktop environment"
+arch=('any')
+#url=
+license=('MIT')
+groups=('tvm')
+#install=
+depends=(
+  # Plasma group
+  # 'bluedevil'
+  'breeze'
+  'breeze-gtk'
+  'discover'
+  'drkonqi'
+  'kactivitymanagerd'
+  'kde-cli-tools'
+  'kde-gtk-config'
+  'kdecoration'
+  'kdeplasma-addons'
+  'kgamma5'
+  'khotkeys'
+  'kinfocenter'
+  'kmenuedit'
+  'knetattach'
+  'kscreen'
+  'kscreenlocker'
+  'ksshaskpass'
+  'ksysguard'
+  'kwallet-pam'
+  'kwayland-integration'
+  'kwin'
+  'kwrited'
+  'libkscreen'
+  'libksysguard'
+  'milou'
+  'oxygen'
+  'plasma-browser-integration'
+  'plasma-desktop'
+  'plasma-integration'
+  'plasma-nm'
+  'plasma-pa'
+  'plasma-sdk'
+  'plasma-vault'
+  'plasma-workspace'
+  'plasma-workspace-wallpapers'
+  'polkit-kde-agent'
+  'powerdevil'
+  'sddm-kcm'
+  'systemsettings'
+  'user-manager'
+  'xdg-desktop-portal-kde'
+
+  # Custom packages
+  'dolphin'
+  'guake'
+  'konsole'
+  'partitionmanager'
+)
