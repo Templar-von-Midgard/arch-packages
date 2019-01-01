@@ -88,14 +88,29 @@ cat <<EOF > /mnt/boot/loader/loader.conf
 default arch
 EOF
 
+partuuid_of() {
+  echo "PARTUUID=$(blkid -s PARTUUID -o value "$1")"
+}
+
 cat <<EOF > /mnt/boot/loader/entries/arch.conf
 title    Arch Linux
 linux    /vmlinuz-linux
 initrd   /initramfs-linux.img
-options  root=PARTUUID=$(blkid -s PARTUUID -o value "$part_root") rw
+options  resume=$(partuuid_of "$part_swap") root=$(partuuid_of "$part_root") rw
+EOF
+
+sed -e 's/#(COMPRESSION="lz4")/\1/' \
+    -e 's/^(HOOKS=.*?)udev(.*?)\)$/\1systemd\2 sd-vconsole)/' \
+    -i /mnt/etc/mkinitcpio.conf
+hibernation_img_size=$(( ($swap_size - 2048) * 1024 * 1024 ))
+echo <<EOF > /mnt/etc/tmpfiles.d/sys-power-image_size.conf
+# Set the hibernation image_size to swap_size - 2GiB
+#       Path                    Mode    User    Group   Age     Argument
+w       /sys/power/image_size   -       -       -       -       ${hibernation_img_size}
 EOF
 
 arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G wheel,uucp,video,audio,storage,games,input "$user"
+arch-chroot /mnt mkinitcpio -p linux
 
 echo "$user:$password" | chpasswd --root /mnt
 echo "root:$password" | chpasswd --root /mnt
