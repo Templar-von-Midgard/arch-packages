@@ -54,7 +54,7 @@ depends=(
 
   # Custom packages
   'dolphin'
-  'guake'
   'konsole'
   'partitionmanager'
+  'yakuake'
 )
